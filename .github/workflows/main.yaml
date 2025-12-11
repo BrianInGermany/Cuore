@@ -1,0 +1,51 @@
+name: Update Caffé Cuore Calendar
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 * * * *"   # every hour (adjust as needed)
+  workflow_dispatch:       # manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-calendar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download Google Calendar ICS
+        run: |
+          echo "Downloading ICS..."
+          curl -L --fail \
+            "https://calendar.google.com/calendar/ical/01d1b3a9fcf32cadfa3dd060c8f7acfd7f3a5b967518563a7d84e67cdf370e21%40group.calendar.google.com/public/basic.ics" \
+            -o calendar.ics
+          echo "Download finished:"
+          ls -la calendar.ics
+
+      - name: Commit and push if changed
+        run: |
+          # Show status
+          git status
+
+          # If nothing changed, skip committing
+          if git diff --quiet calendar.ics; then
+            echo "No changes in calendar.ics"
+            exit 0
+          fi
+
+          # Configure bot user
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Commit and push
+          git add calendar.ics
+          git commit -m "Update calendar.ics from Google Calendar"
+          git push origin main
