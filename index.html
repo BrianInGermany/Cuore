@@ -254,13 +254,30 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     eventClick: function(info) {
-      info.jsEvent.preventDefault();
+  info.jsEvent.preventDefault();
 
-      modalTitle.textContent = info.event.title;
-      modalDescription.textContent = info.event.extendedProps.description || "";
+  const modal = document.getElementById("eventModal");
+  const title = document.getElementById("modalTitle");
+  const desc  = document.getElementById("modalDescription");
+  const time  = document.getElementById("modalTime");
 
-      modal.style.display = "flex";
-    }
+  // Formatierte Uhrzeit
+  const start = info.event.start;
+  let timeString = "";
+
+  if (start) {
+    timeString = start.toLocaleTimeString("de-DE", {
+      hour: "2-digit",
+      minute: "2-digit"
+    }) + " Uhr";
+  }
+
+  title.textContent = info.event.title;
+  time.textContent  = timeString;
+  desc.textContent  = info.event.extendedProps.description || "";
+
+  modal.style.display = "flex";
+}
   });
 
   calendar.render();
