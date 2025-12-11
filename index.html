@@ -156,7 +156,7 @@
       display: flex;
     }
 
-    /* Event pill that fills the day box with big text */
+    /* Event block that fills the day with big text */
     .fc-daygrid-event {
       flex: 1;
       width: 100%;
@@ -191,7 +191,6 @@
       border-top: 1px solid rgba(247, 237, 226, 0.35);
       padding-top: 1.6rem;
       color: var(--champagne);
-      font-family: "Poppins", sans-serif;
     }
 
     .impressum-title {
@@ -258,13 +257,14 @@
         },
         eventSources: [
           {
-            url: "https://calendar.google.com/calendar/ical/01d1b3a9fcf32cadfa3dd060c8f7acfd7f3a5b967518563a7d84e67cdf370e21%40group.calendar.google.com/public/basic.ics",
+            // IMPORTANT: change this URL if your PHP file is in a subfolder
+            url: "cuore-calendar-proxy.php",
             format: "ics"
           }
         ],
         dayMaxEventRows: 2,
         eventContent: function (arg) {
-          // Custom rendering: just a large title block
+          // Custom rendering: big centered title
           var titleEl = document.createElement("div");
           titleEl.className = "cc-event-title";
           titleEl.textContent = arg.event.title;
