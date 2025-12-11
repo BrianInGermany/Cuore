@@ -7,7 +7,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- FullCalendar CSS -->
+  <!-- FullCalendar base CSS (v6) -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css"
@@ -227,8 +227,16 @@
     </div>
   </div>
 
-  <!-- FullCalendar core + icalendar plugin -->
+  <!-- FullCalendar core bundle -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
+  <!-- Locales (so locale: 'de' works) -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/locales-all.global.min.js"></script>
+
+  <!-- iCal parser required by @fullcalendar/icalendar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"></script>
+
+  <!-- FullCalendar iCalendar plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.15/index.global.min.js"></script>
 
   <script>
@@ -244,14 +252,15 @@
           center: "title",
           right: ""
         },
-        eventSources: [
-          {
-            // served statically by GitHub Pages, regularly updated by GitHub Action
-            url: "calendar.ics",
-            format: "ics"
-          }
-        ],
+
+        // ICS source from your repo root (created by GitHub Action)
+        events: {
+          url: "calendar.ics",
+          format: "ics"
+        },
+
         dayMaxEventRows: 2,
+
         eventContent: function (arg) {
           var titleEl = document.createElement("div");
           titleEl.className = "cc-event-title";
