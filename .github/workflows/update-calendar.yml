@@ -1,9 +1,9 @@
-name: Update Caffe Cuore Calendar
+name: Update Caffé Cuore Calendar
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour (adjust if you want)
-  workflow_dispatch:       # allows manual run from GitHub UI
+    - cron: "0 * * * *"   # every hour; adjust if you like (e.g. "0 3 * * *" = daily at 03:00 UTC)
+  workflow_dispatch:       # manual trigger from GitHub UI
 
 permissions:
   contents: write
@@ -13,8 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout main
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Download Google Calendar ICS
         run: |
@@ -34,4 +36,4 @@ jobs:
 
           git add calendar.ics
           git commit -m "Update calendar.ics from Google Calendar"
-          git push
+          git push origin main
