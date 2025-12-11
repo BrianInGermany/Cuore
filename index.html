@@ -72,7 +72,6 @@
       color: var(--text-dark);
     }
 
-    /* FullCalendar base font */
     .fc {
       font-family: "Poppins", system-ui, sans-serif;
       font-size: 0.9rem;
@@ -109,12 +108,6 @@
       border-color: var(--negroni-red);
     }
 
-    .fc-button-primary:disabled {
-      background: #444;
-      border-color: #444;
-      box-shadow: none;
-    }
-
     .fc-col-header-cell-cushion {
       color: var(--espresso-black);
       text-transform: uppercase;
@@ -128,17 +121,15 @@
       font-weight: 500;
     }
 
-    /* Today highlight */
     .fc-day-today {
       background: rgba(224, 165, 94, 0.17) !important;
       box-shadow: inset 0 0 0 1px rgba(208, 139, 65, 0.45);
     }
 
-    /* Make the day's content stretch so events can fill it nicely */
     .fc-daygrid-day-frame {
       display: flex;
       flex-direction: column;
-      min-height: 6rem; /* taller day cells */
+      min-height: 6rem;
     }
 
     .fc-daygrid-day-top {
@@ -156,7 +147,6 @@
       display: flex;
     }
 
-    /* Event block that fills the day with big text */
     .fc-daygrid-event {
       flex: 1;
       width: 100%;
@@ -173,7 +163,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      white-space: normal; /* allow wrapping */
+      white-space: normal;
       font-size: 0.95rem;
       font-weight: 600;
       line-height: 1.3;
@@ -183,7 +173,6 @@
       width: 100%;
     }
 
-    /* Impressum */
     .impressum {
       margin-top: 3rem;
       font-size: 0.9rem;
@@ -257,14 +246,13 @@
         },
         eventSources: [
           {
-            // IMPORTANT: change this URL if your PHP file is in a subfolder
-            url: "cuore-calendar-proxy.php",
+            // served statically by GitHub Pages, regularly updated by GitHub Action
+            url: "calendar.ics",
             format: "ics"
           }
         ],
         dayMaxEventRows: 2,
         eventContent: function (arg) {
-          // Custom rendering: big centered title
           var titleEl = document.createElement("div");
           titleEl.className = "cc-event-title";
           titleEl.textContent = arg.event.title;
