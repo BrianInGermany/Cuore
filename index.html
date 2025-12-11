@@ -132,6 +132,34 @@
       text-transform: uppercase;
       margin-bottom: 0.4rem;
     }
+
+    .subscribe-box {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.sub-btn {
+  display: inline-block;
+  margin: 0.4rem 0.3rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: var(--champagne) !important; /* ← WICHTIG: überschreibt Browser-Standard */
+  text-decoration: none !important;   /* ← Kein Unterstrich */
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sub-btn.primary {
+  background: linear-gradient(135deg, var(--negroni-red), var(--bitter-orange));
+  border-color: transparent;
+}
+
+.sub-btn:hover {
+  opacity: 0.9;
+}
   </style>
 </head>
 <body>
@@ -142,11 +170,14 @@
   <div id="calendar"></div>
 <div class="subscribe-box">
   <p>Immer auf dem Laufenden bleiben:</p>
+
   <a class="sub-btn primary"
      href="https://calendar.google.com/calendar/u/0?cid=01d1b3a9fcf32cadfa3dd060c8f7acfd7f3a5b967518563a7d84e67cdf370e21@group.calendar.google.com"
      target="_blank" rel="noopener">
-    In Google&nbsp;Kalender abonnieren
+    In Google Kalender abonnieren
   </a>
+
+  <br>
 
   <a class="sub-btn"
      href="webcal://calendar.google.com/calendar/ical/01d1b3a9fcf32cadfa3dd060c8f7acfd7f3a5b967518563a7d84e67cdf370e21%40group.calendar.google.com/public/basic.ics">
