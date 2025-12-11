@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <title>Der Monat beim Caffé Cuore</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
   <!-- FullCalendar CSS -->
   <link
     rel="stylesheet"
@@ -11,48 +14,139 @@
   />
 
   <style>
+    :root {
+      --negroni-red: #C0362C;
+      --bitter-orange: #E76F51;
+      --warm-gold: #D4A373;
+      --espresso-black: #1A1A1A;
+      --champagne: #F7EDE2;
+      --text-dark: #2B2B2B;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
       padding: 0;
-      background: #faf7f2;
-      color: #333;
+      background: radial-gradient(circle at top, #2b1a18 0, #120909 50%, #050303 100%);
+      color: var(--champagne);
+      font-family: "Poppins", system-ui, sans-serif;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
     .page {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 2rem 1rem 3rem;
+      padding: 2.5rem 1.5rem 3.5rem;
     }
 
     h1 {
+      font-family: "Playfair Display", serif;
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin: 0 0 2rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
+      font-size: 2.2rem;
+      letter-spacing: 0.04em;
+      color: var(--champagne);
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      margin: 0.75rem auto 0;
+      width: 4rem;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--negroni-red), var(--warm-gold));
     }
 
     #calendar {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      background: var(--champagne);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
       padding: 1rem;
+      color: var(--text-dark);
+      font-family: "Poppins", sans-serif;
     }
 
+    /* Calendar typography */
+    .fc {
+      font-size: 0.88rem;
+    }
+
+    .fc-toolbar-title {
+      font-family: "Playfair Display", serif;
+      color: var(--negroni-red);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* Buttons */
+    .fc-button-primary {
+      background: var(--espresso-black);
+      border: 1px solid var(--espresso-black);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+    }
+
+    .fc-button-primary:hover {
+      background: var(--negroni-red);
+      border-color: var(--negroni-red);
+    }
+
+    /* Weekday headers */
+    .fc-col-header-cell-cushion {
+      color: var(--espresso-black);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    /* Today's highlight */
+    .fc-day-today {
+      background: rgba(224, 165, 94, 0.17) !important;
+      box-shadow: inset 0 0 0 1px rgba(208, 139, 65, 0.45);
+    }
+
+    /* Event pills */
+    .fc-daygrid-event {
+      border-radius: 999px;
+      padding: 1px 6px;
+      background: linear-gradient(135deg, rgba(192, 54, 44, 0.95), rgba(228, 136, 84, 0.95));
+      border: none;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    /* Impressum */
     .impressum {
-      margin-top: 2.5rem;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      border-top: 1px solid #ddd;
-      padding-top: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      border-top: 1px solid rgba(247, 237, 226, 0.35);
+      padding-top: 1.6rem;
+      color: var(--champagne);
+      font-family: "Poppins", sans-serif;
     }
 
     .impressum-title {
+      font-family: "Playfair Display", serif;
       font-weight: 600;
-      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+      color: var(--warm-gold);
     }
   </style>
 </head>
@@ -85,7 +179,6 @@
         height: "auto",
         eventSources: [
           {
-            // Use https instead of webcal so the browser can fetch it
             url: "https://p46-caldav.icloud.com/published/2/MTc2OTYxMDMzMzkxNzY5NvYUE0Q7GQc3hT9DYs55RItJsjy51TxjQnGSvgxqaZCdwiyjvZQYVdgjMOapjgZ8hNBK8s37lPKFKOFZeYY44aU",
             format: "ics"
           }
